@@ -25,10 +25,15 @@ public void draw()
   //triangle(400+screenX-len,600+screenY+len, 600+screenX+len,600+screenY+len, 500+screenX,400+screenY-len);
   sierpinski(500+screenX,500+screenY,len);
 }
-public void mouseWheel(MouseEvent event)
+
+public void keyPressed()
 {
-  len-=20*event.getCount();
+  if(key == 38)
+    len+=10;
+  if(key == 40)
+    len-=10;
 }
+
 public void mousePressed()
 {
   startX=mouseX;
