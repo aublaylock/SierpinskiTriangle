@@ -28,9 +28,9 @@ public void draw()
 
 public void keyPressed()
 {
-  if(key == 38)
+  if(keyCode == 38)
     len+=10;
-  if(key == 40)
+  if(keyCode == 40)
     len-=10;
 }
 
