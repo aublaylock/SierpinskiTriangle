@@ -47,7 +47,7 @@ public void mouseReleased()
 
 public void sierpinski(int x, int y, int len) 
 {
-  if(len<6){
+  if(len<5){
     triangle(x-len,y,x+len,y,x,y-2*len);
     return;
   }
