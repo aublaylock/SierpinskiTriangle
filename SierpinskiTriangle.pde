@@ -41,7 +41,8 @@ public void keyPressed()
     len/=1.1;
   }
   if(keyCode == 32){
-    len=100;
+    offsetX=0;
+    offsetY=0;
   }
 }
 
