@@ -12,6 +12,7 @@ public void setup()
 }
 public void draw()
 {
+  println(len);
   if(mousePressed){
     screenX=offsetX-(startX-mouseX);
     screenY=offsetY-(startY-mouseY);
@@ -22,16 +23,15 @@ public void draw()
   }
   background(0,0,0);
   stroke(255,255,255);
-  //triangle(400+screenX-len,600+screenY+len, 600+screenX+len,600+screenY+len, 500+screenX,400+screenY-len);
   sierpinski(500+screenX,500+screenY,len);
 }
 
 public void keyPressed()
 {
   if(keyCode == 38)
-    len+=10;
+    len = Math.max((int)(len*1.1),len+1);
   if(keyCode == 40)
-    len-=10;
+    len/=1.1;
 }
 
 public void mousePressed()
@@ -48,10 +48,22 @@ public void mouseReleased()
 public void sierpinski(int x, int y, int len) 
 {
   if(len<6){
-    triangle(x-len,y,x+len,y,x,y-2*len);
+    if(isOnScreen(x,y))
+      triangle(x-len,y,x+len,y,x,y-2*len);
     return;
   }
-  sierpinski(x-len/2,y+len/2,len/2);
-  sierpinski(x+len/2,y+len/2,len/2);
-  sierpinski(x,y-len/2,len/2);  
+  if(isWithinLengthOfScreen(x,y, len)){
+    sierpinski(x-len/2,y+len/2,len/2);
+    sierpinski(x+len/2,y+len/2,len/2);
+    sierpinski(x,y-len/2,len/2);
+  }
+  return;
+}
+
+boolean isOnScreen(int x, int y){
+  return((x>-50 && x<width+50)&&(y>-50 && y<height+50));
+}
+
+boolean isWithinLengthOfScreen(int x, int y, int len){
+  return((x>-len && x<width+len)&&(y>-len && y<height+len));
 }
