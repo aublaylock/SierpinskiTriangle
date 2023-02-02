@@ -13,7 +13,6 @@ public void setup()
 }
 public void draw()
 {
-  println(len);
   
   if(mousePressed){
     screenX=offsetX-(startX-mouseX);
