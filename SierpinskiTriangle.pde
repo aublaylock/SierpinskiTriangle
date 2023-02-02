@@ -8,11 +8,13 @@ int offsetY = 0;
 
 public void setup()
 {
+  textAlign(CENTER, CENTER);
   size(1000,1000);
 }
 public void draw()
 {
   println(len);
+  
   if(mousePressed){
     screenX=offsetX-(startX-mouseX);
     screenY=offsetY-(startY-mouseY);
@@ -24,14 +26,23 @@ public void draw()
   background(0,0,0);
   stroke(255,255,255);
   sierpinski(500+screenX,500+screenY,len);
+  if(len > 1952257792){
+    textSize(80);
+    text("Integer Limit Reached",500,500);
+  }
 }
 
 public void keyPressed()
 {
-  if(keyCode == 38)
+  if(keyCode == 38){
     len = Math.max((int)(len*1.1),len+1);
-  if(keyCode == 40)
+  }
+  if(keyCode == 40){
     len/=1.1;
+  }
+  if(keyCode == 32){
+    len=100;
+  }
 }
 
 public void mousePressed()
